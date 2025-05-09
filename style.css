@@ -92,7 +92,7 @@ a:not(.btn--remix):visited {
 
 body {
   font-family: HK Grotesk;
-  background: linear-gradient(to bottom, #deff5f, #50c8ff);
+  background: linear-gradient(to bottom, #4fff88, #5550ff);
   height: 100vh;
 }
 
@@ -130,7 +130,7 @@ body {
 }
 
 .illustration {
-  max-width: 100%;
+  max-width: 60px;
   max-height: var(--image-max-width);
   margin-top: var(--image-margin);
   position: absolute;

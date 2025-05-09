@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=HKGrotesk:wght@400;700&display=swap');
+
 :root {
   --color-bg: #2fffdc;
   --color-text-main: #000000;
@@ -6,20 +8,24 @@
   --wrapper-height: 87vh;
   --image-max-width: 300px;
   --image-margin: 3rem;
-  --font-family: "HK Grotesk";
-  --font-family-header: "HK Grotesk";
+  --font-family: "HKGrotesk", sans-serif;
+  --font-family-header: "HKGrotesk", sans-serif;
+}
+
+body {
+  font-family: var(--font-family);
 }
 
 @font-face {
-  font-family: "HK Grotesk";
-  src: url("/fonts/HKGrotesk-Regular.woff2") format("woff2"),
-       url("/fonts/HKGrotesk-Regular.woff") format("woff");
+  font-family: "Cal San";
+  src: url("/fonts/CalSan-Regular.woff2") format("woff2"),
+       url("/fonts/CalSan-Regular.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "HK Grotesk";
+  font-family: "Cal San";
   src: url("/fonts/HKGrotesk-Bold.woff2") format("woff2"),
        url("/fonts/HKGrotesk-Bold.woff") format("woff");
   font-weight: bold;
@@ -72,7 +78,7 @@
 
 .footer a:not(.btn--remix):link,
 a:not(.btn--remix):visited {
-  font-family: HK Grotesk;
+  font-family: var(--font-family);
   font-style: normal;
   font-weight: normal;
   font-size: 1.1rem;
@@ -95,7 +101,7 @@ a:not(.btn--remix):visited {
 }
 
 body {
-  font-family: HK Grotesk;
+  font-family: "Cal San";
   background: linear-gradient(to bottom, #deff5f, #50c8ff);
   height: 100vh;
 }
@@ -117,7 +123,7 @@ body {
 
 .title {
   color: var(--color-text-header);
-  font-family: HK Grotesk;
+  font-family: "Cal San";
   font-style: normal;
   font-weight: bold;
   font-size: 80px;

@@ -128,6 +128,11 @@ body {
   }
 }
 
+h1.title,
+.instruction {
+  color: white;
+}
+
 .illustration {
   max-width: 60px;
   max-height: var(--image-max-width);

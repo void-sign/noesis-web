@@ -10,6 +10,22 @@
   --font-family-header: "HK Grotesk";
 }
 
+@font-face {
+  font-family: "HK Grotesk";
+  src: url("/fonts/HKGrotesk-Regular.woff2") format("woff2"),
+       url("/fonts/HKGrotesk-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "HK Grotesk";
+  src: url("/fonts/HKGrotesk-Bold.woff2") format("woff2"),
+       url("/fonts/HKGrotesk-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
 * {
   box-sizing: border-box;
 }

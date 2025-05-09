@@ -27,8 +27,8 @@ body {
 
 @font-face {
   font-family: "Cal San";
-  src: url("/fonts/HKGrotesk-Bold.woff2") format("woff2"),
-       url("/fonts/HKGrotesk-Bold.woff") format("woff");
+  src: url("/fonts/CalSan-Bold.woff2") format("woff2"),
+       url("/fonts/CalSan-Bold.woff") format("woff");
   font-weight: bold;
   font-style: normal;
 }

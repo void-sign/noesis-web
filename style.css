@@ -92,7 +92,7 @@ a:not(.btn--remix):visited {
 
 body {
   font-family: HK Grotesk;
-  background: linear-gradient(to bottom, #deff5f, #50c8ff);
+  background: linear-gradient(to bottom, #e1ff6e, #50c8ff);
   height: 100vh;
   color: white;
 }
@@ -113,7 +113,7 @@ body {
 }
 
 .title {
-  color: white;
+  color: #58bda5;
   font-family: HK Grotesk;
   font-style: normal;
   font-weight: bold;
@@ -121,6 +121,7 @@ body {
   line-height: 105%;
   margin: 0;
   line-height: 80px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5)
 }
 
 @media (max-width: 600px) {

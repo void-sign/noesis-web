@@ -129,7 +129,7 @@ body {
 }
 
 h1.title,
-.instruction {
+.instructions {
   color: white;
 }
 
@@ -144,11 +144,6 @@ h1.title {
   position: absolute;
   bottom: 0;
   right: 0;
-}
-
-h1,
-.instruction {
-  color: white;
 }
 
 .instructions {

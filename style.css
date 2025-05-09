@@ -6,20 +6,8 @@
   --wrapper-height: 87vh;
   --image-max-width: 300px;
   --image-margin: 3rem;
-  --font-family: "CalSans", sans-serif;
-  --font-family-header: "CalSans", sans-serif;
-}
-
-body {
-  font-family: var(--font-family);
-}
-
-@font-face {
-  font-family: "CalSans";
-  src: url("/fonts/CalSans-Regular.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap; /* Ensures text is displayed while the font loads */
+  --font-family: "HK Grotesk";
+  --font-family-header: "HK Grotesk";
 }
 
 * {
@@ -30,7 +18,19 @@ body {
   display: none !important;
 }
 
+@font-face {
+  font-family: HK Grotesk;
+  src: url("https://cdn.glitch.me/605e2a51-d45f-4d87-a285-9410ad350515%2FHKGrotesk-Regular.otf?v=1603136326027") format("opentype");
+}
+
+@font-face {
+  font-family: HK Grotesk;
+  font-weight: bold;
+  src: url("https://cdn.glitch.me/605e2a51-d45f-4d87-a285-9410ad350515%2FHKGrotesk-Bold.otf?v=1603136323437") format("opentype");
+}
+
 .btn--remix {
+  font-family: HK Grotesk;
   padding: 0.75rem 1rem;
   font-size: 1.1rem;
   line-height: 1rem;
@@ -68,7 +68,7 @@ body {
 
 .footer a:not(.btn--remix):link,
 a:not(.btn--remix):visited {
-  font-family: var(--font-family);
+  font-family: HK Grotesk;
   font-style: normal;
   font-weight: normal;
   font-size: 1.1rem;
@@ -91,7 +91,7 @@ a:not(.btn--remix):visited {
 }
 
 body {
-  font-family: "CalSan";
+  font-family: HK Grotesk;
   background: linear-gradient(to bottom, #deff5f, #50c8ff);
   height: 100vh;
 }
@@ -113,28 +113,27 @@ body {
 
 .title {
   color: var(--color-text-header);
-  font-family: "CalSan";
+  font-family: HK Grotesk;
   font-style: normal;
   font-weight: bold;
-  font-size: 80px;
+  font-size: 100px;
   line-height: 105%;
   margin: 0;
-  line-height: 68px;
+  line-height: 80px;
 }
 
 @media (max-width: 600px) {
   .title {
-    font-size: 50px;
-    line-height: 44px;
-    margin-top: 40px;
+    font-size: 62px;
+    line-height: 50px;
   }
 }
 
 .illustration {
-  max-width: 50px;
+  max-width: 100%;
   max-height: var(--image-max-width);
   margin-top: var(--image-margin);
-  position: fixed;
+  position: absolute;
   bottom: 0;
   right: 0;
 }

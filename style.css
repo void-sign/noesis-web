@@ -112,7 +112,6 @@ body {
 }
 
 .title {
-  color: #ff72d7;
   font-family: HK Grotesk;
   font-style: normal;
   font-weight: bold;
@@ -138,6 +137,11 @@ body {
   right: 0;
 }
 
+h1,
+.instruction {
+  color: white;
+}
+
 .instructions {
   margin: 1rem auto 0;
 }
@@ -152,10 +156,6 @@ input {
   border-radius: 4px;
   padding: 0.5rem 1rem;
   transition: 500ms;
-}
-
-h2 {
-  color: var(--color-text-header);
 }
 
 .illustration:active {

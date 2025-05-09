@@ -121,7 +121,6 @@ body {
   line-height: 105%;
   margin: 0;
   line-height: 80px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5)
 }
 
 @media (max-width: 600px) {

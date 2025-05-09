@@ -94,7 +94,7 @@ body {
   font-family: HK Grotesk;
   background: linear-gradient(to bottom, #e1ff6e, #50c8ff);
   height: 100vh;
-  color: white;
+  color: black;
 }
 
 .wrapper {
@@ -113,7 +113,7 @@ body {
 }
 
 .title {
-  color: #58bda5;
+  color: white;
   font-family: HK Grotesk;
   font-style: normal;
   font-weight: bold;
@@ -157,7 +157,7 @@ input {
 }
 
 h2 {
-  color: white;
+  color: black;
 }
 
 .illustration:active {
@@ -180,5 +180,5 @@ h2 {
 }
 
 a {
-  color: white;
+  color: black;
 }

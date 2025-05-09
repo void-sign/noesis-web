@@ -6,8 +6,8 @@
   --wrapper-height: 87vh;
   --image-max-width: 300px;
   --image-margin: 3rem;
-  --font-family: "CalSan", sans-serif;
-  --font-family-header: "CalSan", sans-serif;
+  --font-family: "CalSans", sans-serif;
+  --font-family-header: "CalSans", sans-serif;
 }
 
 body {
@@ -15,19 +15,9 @@ body {
 }
 
 @font-face {
-  font-family: "CalSan";
-  src: url("/fonts/CalSan-Regular.woff2") format("woff2"),
-       url("/fonts/CalSan-Regular.woff") format("woff");
+  font-family: "CalSans";
+  src: url("/fonts/CalSans-Regular.ttf") format("truetype");
   font-weight: normal;
-  font-style: normal;
-  font-display: swap; /* Ensures text is displayed while the font loads */
-}
-
-@font-face {
-  font-family: "CalSan";
-  src: url("/fonts/CalSan-Bold.woff2") format("woff2"),
-       url("/fonts/CalSan-Bold.woff") format("woff");
-  font-weight: bold;
   font-style: normal;
   font-display: swap; /* Ensures text is displayed while the font loads */
 }

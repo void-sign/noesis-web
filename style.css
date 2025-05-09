@@ -6,8 +6,8 @@
   --wrapper-height: 87vh;
   --image-max-width: 300px;
   --image-margin: 3rem;
-  --font-family: "HKGrotesk", sans-serif;
-  --font-family-header: "HKGrotesk", sans-serif;
+  --font-family: "CalSan", sans-serif;
+  --font-family-header: "CalSan", sans-serif;
 }
 
 body {
@@ -15,7 +15,7 @@ body {
 }
 
 @font-face {
-  font-family: "Cal San";
+  font-family: "CalSan";
   src: url("/fonts/CalSan-Regular.woff2") format("woff2"),
        url("/fonts/CalSan-Regular.woff") format("woff");
   font-weight: normal;
@@ -23,7 +23,7 @@ body {
 }
 
 @font-face {
-  font-family: "Cal San";
+  font-family: "CalSan";
   src: url("/fonts/CalSan-Bold.woff2") format("woff2"),
        url("/fonts/CalSan-Bold.woff") format("woff");
   font-weight: bold;
@@ -99,7 +99,7 @@ a:not(.btn--remix):visited {
 }
 
 body {
-  font-family: "Cal San";
+  font-family: "CalSan";
   background: linear-gradient(to bottom, #deff5f, #50c8ff);
   height: 100vh;
 }
@@ -121,7 +121,7 @@ body {
 
 .title {
   color: var(--color-text-header);
-  font-family: "Cal San";
+  font-family: "CalSan";
   font-style: normal;
   font-weight: bold;
   font-size: 80px;

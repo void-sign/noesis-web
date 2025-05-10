@@ -131,6 +131,7 @@ body {
 
 .title {
   color: black;
+	text-shadow: 10px 9px 8px #57CBF8;
   font-family: 'Boogie Blocks';
   font-style: normal;
   font-weight: bold;

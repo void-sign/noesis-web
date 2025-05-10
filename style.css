@@ -20,13 +20,30 @@
 
 @font-face {
   font-family: HK Grotesk;
-  src: url("HKGrotesk-Regular.otf") format("opentype");
+  src: url("fonts/hkgrotesk/HKGrotesk-Regular.otf") format("opentype");
 }
 
 @font-face {
   font-family: HK Grotesk;
   font-weight: bold;
-  src: url("HKGrotesk-Bold.otf") format("opentype");
+  src: url("fonts/hkgrotesk/HKGrotesk-Bold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: 'Boogie Blocks';
+  src: url("fonts/boogie-blocks/boogie-blocks.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'Noto Sans Thai';
+  src: url("fonts/noto-sans-thai/noto-sans-thai.woff2") format("woff2");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Noto Sans Thai';
+  src: url("fonts/noto-sans-thai/noto-sans-thai-bold.woff2") format("woff2");
+  font-weight: bold;
 }
 
 .btn--remix {
@@ -114,7 +131,7 @@ body {
 
 .title {
   color: black;
-  font-family: HK Grotesk;
+  font-family: 'Boogie Blocks';
   font-style: normal;
   font-weight: bold;
   font-size: 108px;

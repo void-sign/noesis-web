@@ -141,18 +141,6 @@ body {
   line-height: 1em;
 }
 
-@media (max-width: 600px) {
-  .title {
-    font-size: 28px;
-    line-height: 1em;
-  }
-
-  .illustration {
-    max-width: 60px;
-    margin-top: 20px;
-  }
-}
-
 .illustration {
   max-width: 68px;
   border-radius: 18px;
@@ -201,4 +189,16 @@ h2 {
 
 a {
   color: black;
+}
+
+@media (max-width: 600px) {
+  .title {
+    font-size: 44px;
+    line-height: 1em;
+  }
+
+  .illustration {
+    max-width: 60px;
+    margin-top: 20px;
+  }
 }

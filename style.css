@@ -134,16 +134,16 @@ body {
   font-family: 'Boogie Blocks';
   font-style: normal;
   font-weight: bold;
-  font-size: 108px;
+  font-size: 46px;
   line-height: 105%;
   margin: 0;
-  line-height: 80px;
+  line-height: 1em;
 }
 
 @media (max-width: 600px) {
   .title {
-    font-size: 62px;
-    line-height: 50px;
+    font-size: 28px;
+    line-height: 1em;
   }
 }
 

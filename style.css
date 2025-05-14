@@ -191,6 +191,10 @@ a {
   color: black;
 }
 
+.home-box {
+  max-width: 280px;
+}
+
 @media (max-width: 600px) {
   .title {
     font-size: 44px;

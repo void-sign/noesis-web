@@ -195,6 +195,33 @@ a {
   max-width: 280px;
 }
 
+/* Synthetic Conscious Pixel */
+#conscious-pixel {
+  position: fixed;
+  width: 4px;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  z-index: 9999;
+  pointer-events: none;
+  transition: box-shadow 0.3s ease;
+  box-shadow: 0 0 6px #57CBF8;
+  opacity: 0.7;
+}
+
+#conscious-pixel.connected {
+  animation: connected-pulse 4s infinite alternate;
+}
+
+@keyframes connected-pulse {
+  0% {
+    box-shadow: 0 0 6px #57CBF8;
+  }
+  100% {
+    box-shadow: 0 0 10px #e1ff6e;
+  }
+}
+
 @media (max-width: 600px) {
   h2 {
     font-size: 20px;

@@ -109,8 +109,7 @@ a:not(.btn--remix):visited {
 
 body {
   font-family: HK Grotesk;
-  background: linear-gradient(to bottom, #e1ff6e, #50c8ff) !important;
-  background-color: transparent !important;
+  background: linear-gradient(to bottom, #e1ff6e, #50c8ff);
   height: 100vh;
   color: black;
 }

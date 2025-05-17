@@ -82,7 +82,16 @@ function createConsciousPixel() {
  */
 async function connectToNoesisServer() {
   try {
-    // Try to connect to the noesis server
+    // First check if we're running from a local awake command (check if we're on localhost)
+    const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    
+    if (isLocalhost) {
+      console.log('Running in local mode from noesis awake command');
+      // We're running locally so we can assume we're connected
+      return true;
+    }
+    
+    // If not running locally, try to connect to the remote noesis server
     const response = await fetch('https://noesis.run', { 
       method: 'GET',
       mode: 'no-cors' // Using no-cors as a fallback in case the server doesn't support CORS

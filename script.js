@@ -230,16 +230,36 @@ function updatePixel(pixel, state, timestamp) {
  * Generates a random color with high brightness for visibility
  * @returns {string} - CSS color string in rgb format
  */
+/**
+ * Generates a random color with high brightness for visibility
+ * @returns {string} - CSS color string in rgb format
+ */
 function getRandomColor() {
-  // Use colors that match the site's existing gradient
+  // Use colors that stand out against the site gradient background (#e1ff6e, #50c8ff)
   const colors = [
-    '#57CBF8', // Light blue (matches the text shadow)
-    '#e1ff6e', // Light green-yellow (matches the top gradient)
-    '#50c8ff', // Sky blue (matches the bottom gradient)
-    '#ffffff'  // White for occasional contrast
+    "#ff5500",  // Bright orange
+    "#ff0066",  // Hot pink
+    "#9900ff",  // Purple
+    "#ff00ff",  // Magenta
+    "#00ff99",  // Bright mint
+    "#ff3300",  // Red-orange
+    "#0033ff"   // Deep blue
   ];
   
-  return colors[Math.floor(Math.random() * colors.length)];
+  // Add randomness to the selected color to make it more varied
+  const baseColor = colors[Math.floor(Math.random() * colors.length)];
+  
+  // Slight variation to the chosen color
+  const rgb = hexToRgb(baseColor);
+  if (rgb) {
+    // Add small random variations to each component
+    const r = Math.max(0, Math.min(255, rgb.r + (Math.random() - 0.5) * 30));
+    const g = Math.max(0, Math.min(255, rgb.g + (Math.random() - 0.5) * 30));
+    const b = Math.max(0, Math.min(255, rgb.b + (Math.random() - 0.5) * 30));
+    return `rgb(${Math.round(r)}, ${Math.round(g)}, ${Math.round(b)})`;
+  }
+  
+  return baseColor;
 }
 
 /**

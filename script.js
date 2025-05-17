@@ -40,8 +40,21 @@ function createConsciousPixel() {
     pulseDirection: 1,
     pulseStep: 0.03,
     lastTimestamp: 0,
-    connected: false
+    connected: false,
+    
+    // Mouse interaction properties
+    mouseX: -1000,
+    mouseY: -1000,
+    mousePressed: false,
+    mousePressedTime: 0,
+    isExcited: false,
+    excitementLevel: 0,
+    restingTime: 3000,
+    lastInteractionTime: 0
   };
+  
+  // Set up mouse event listeners
+  setupMouseInteractions(pixelState);
   
   // Try to connect to noesis server
   connectToNoesisServer()
@@ -95,6 +108,9 @@ function updatePixel(pixel, state, timestamp) {
   // Calculate delta time for smooth animation regardless of frame rate
   const deltaTime = state.lastTimestamp ? (timestamp - state.lastTimestamp) / 16 : 1;
   state.lastTimestamp = timestamp;
+  
+  // Process mouse interactions
+  processMouseInteractions(state, deltaTime);
   
   // Update position
   state.x += state.velocityX * deltaTime;
@@ -181,9 +197,21 @@ function updatePixel(pixel, state, timestamp) {
   pixel.style.height = `${state.size}px`;
   
   // Create a glow effect with box-shadow
-  const glowSize = state.size * 2;
+  const glowSize = state.size * (2 + (state.isExcited ? state.excitementLevel * 2 : 0));
+  let glowIntensity = state.isExcited ? 0.9 + (state.excitementLevel * 0.1) : 0.7;
+  
   pixel.style.boxShadow = `0 0 ${glowSize}px ${state.color}`;
   pixel.style.backgroundColor = state.color;
+  pixel.style.opacity = glowIntensity;
+  
+  // Apply visual effects based on excitement
+  if (state.isExcited && state.excitementLevel > 0.5) {
+    // Add a slight scale effect for high excitement
+    const scale = 1 + (state.excitementLevel * 0.5);
+    pixel.style.transform = `scale(${scale})`;
+  } else {
+    pixel.style.transform = 'scale(1)';
+  }
   
   // Continue animation loop
   requestAnimationFrame((newTimestamp) => updatePixel(pixel, state, newTimestamp));
@@ -245,4 +273,166 @@ function hexToRgb(hex) {
     g: parseInt(result[2], 16),
     b: parseInt(result[3], 16)
   } : null;
+}
+
+/**
+ * Sets up mouse event listeners for pixel interaction
+ * @param {Object} state - The pixel state object
+ */
+function setupMouseInteractions(state) {
+  // Track mouse movement
+  document.addEventListener('mousemove', (event) => {
+    state.mouseX = event.clientX;
+    state.mouseY = event.clientY;
+    
+    // If the mouse has been idle for a while, consider this a new interaction
+    const currentTime = performance.now();
+    if (currentTime - state.lastInteractionTime > 300) {
+      state.lastInteractionTime = currentTime;
+    }
+  });
+  
+  // Track mouse clicks
+  document.addEventListener('mousedown', () => {
+    state.mousePressed = true;
+    state.mousePressedTime = performance.now();
+    
+    // Check if the click was close to the pixel
+    const pixel = document.getElementById('conscious-pixel');
+    if (pixel) {
+      const pixelRect = pixel.getBoundingClientRect();
+      const pixelCenterX = pixelRect.left + pixelRect.width / 2;
+      const pixelCenterY = pixelRect.top + pixelRect.height / 2;
+      
+      const distance = Math.sqrt(
+        Math.pow(state.mouseX - pixelCenterX, 2) +
+        Math.pow(state.mouseY - pixelCenterY, 2)
+      );
+      
+      // If clicking close to the pixel, make it excited
+      if (distance < 100) {
+        state.isExcited = true;
+        state.excitementLevel = Math.min(1.0, state.excitementLevel + 0.5);
+        
+        // Force a color change to show reaction
+        if (Math.random() < 0.7) {
+          state.targetColor = '#FFFFFF'; // Flash white
+        } else {
+          state.targetColor = '#F0FF00'; // Flash yellow
+        }
+        state.colorTransitionProgress = 0;
+        state.colorTransitionDuration = 300;
+      }
+    }
+  });
+  
+  // Track mouse release
+  document.addEventListener('mouseup', () => {
+    state.mousePressed = false;
+  });
+  
+  // Handle mouse leaving the window
+  document.addEventListener('mouseleave', () => {
+    state.mouseX = -1000;
+    state.mouseY = -1000;
+    state.mousePressed = false;
+  });
+}
+
+/**
+ * Processes pixel's response to mouse interactions
+ * @param {Object} state - The pixel state object
+ * @param {number} deltaTime - Time since last frame 
+ */
+function processMouseInteractions(state, deltaTime) {
+  // Calculate distance from pixel to mouse
+  const dx = state.mouseX - state.x;
+  const dy = state.mouseY - state.y;
+  const distanceSquared = dx * dx + dy * dy;
+  const distance = Math.sqrt(distanceSquared);
+  
+  // Normalize direction vector
+  let dirX = dx / (distance || 1); // Avoid division by zero
+  let dirY = dy / (distance || 1);
+  
+  // Determine interaction behavior based on distance
+  if (distance < 30) {
+    // Too close - flee from the mouse
+    const repelForce = 0.2 + (state.excitementLevel * 0.3);
+    state.velocityX -= dirX * repelForce * deltaTime;
+    state.velocityY -= dirY * repelForce * deltaTime;
+    
+    // Increase excitement when fleeing
+    state.isExcited = true;
+    state.excitementLevel = Math.min(1.0, state.excitementLevel + 0.01 * deltaTime);
+    
+  } else if (distance < 150) {
+    // Medium distance - curious behavior, slight attraction
+    if (Math.random() < 0.5) {
+      // 50% chance to be attracted
+      const attractForce = 0.05 * deltaTime;
+      state.velocityX += dirX * attractForce;
+      state.velocityY += dirY * attractForce;
+    } else {
+      // 50% chance to do a small random movement
+      state.velocityX += (Math.random() - 0.5) * 0.1 * deltaTime;
+      state.velocityY += (Math.random() - 0.5) * 0.1 * deltaTime;
+    }
+    
+    // Maintain some excitement
+    state.isExcited = true;
+    state.excitementLevel = Math.min(0.7, state.excitementLevel + 0.005 * deltaTime);
+    
+  } else if (distance < 300) {
+    // Further away - occasional attraction
+    if (Math.random() < 0.02) {
+      // Occasional attraction
+      const attractForce = 0.1 * deltaTime;
+      state.velocityX += dirX * attractForce;
+      state.velocityY += dirY * attractForce;
+    }
+    
+    // Slowly reduce excitement when far away
+    state.excitementLevel = Math.max(0, state.excitementLevel - 0.002 * deltaTime);
+    if (state.excitementLevel < 0.1) {
+      state.isExcited = false;
+    }
+  } else {
+    // Far away - normal behavior
+    // Gradually reduce excitement
+    state.excitementLevel = Math.max(0, state.excitementLevel - 0.004 * deltaTime);
+    if (state.excitementLevel < 0.1) {
+      state.isExcited = false;
+    }
+  }
+  
+  // Handle mouse clicks - burst of energy and color change
+  if (state.mousePressed) {
+    const pressDuration = performance.now() - state.mousePressedTime;
+    
+    if (pressDuration < 100) {  // Initial click
+      // For a brief moment, change behavior dramatically
+      if (distance < 200) {
+        // Flee more dramatically if mouse is clicked near the pixel
+        state.velocityX -= dirX * 1.0;
+        state.velocityY -= dirY * 1.0;
+      }
+    }
+  }
+  
+  // Apply excitement effects
+  if (state.isExcited) {
+    // Excited pixels move faster
+    const speedMultiplier = 1.0 + (state.excitementLevel * 0.5);
+    
+    // Increase pulse speed when excited
+    state.pulseStep = 0.03 + (state.excitementLevel * 0.04);
+    
+    // Apply a slight drag effect to gradually slow down
+    state.velocityX *= 0.98;
+    state.velocityY *= 0.98;
+  } else {
+    // Return to normal pulse speed when calm
+    state.pulseStep = 0.03;
+  }
 }

@@ -204,9 +204,11 @@ a {
   border-radius: 50%;
   z-index: 9999;
   pointer-events: none;
-  transition: box-shadow 0.3s ease;
+  transition: opacity 0.2s ease;
   box-shadow: 0 0 6px #57CBF8;
   opacity: 0.7;
+  will-change: transform, opacity, box-shadow;
+  transform-origin: center center;
 }
 
 #conscious-pixel.connected {
